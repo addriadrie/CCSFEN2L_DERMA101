@@ -10,7 +10,7 @@
     <!-- BOOTSTRAP --> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> 
     <!-- FONTAWESOME -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- GOOGLE FONTS -->
     <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
     <!-- STYLESHEET -->
@@ -74,6 +74,29 @@
             padding: 20px;
             color: black;
             text-align: center;
+        }
+        .button {
+            border-radius: 30px;
+            padding: 10px;
+            color: white;
+            background-color: #BE9355;
+            border-color: transparent;
+        }
+        .card-title {
+            font-family: DM Sans;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .card-fee {
+            font-family: DM Sans;
+            font-weight: normal;
+            font-size: 18px;
+        }
+        .card-sub {
+            font-family: DM Sans;
+            font-weight: normal;
+            font-size: 16px;
+            color: rgb(0, 0, 0, 0.6);
         }
     </style>
     <title>Derma 101</title>
@@ -139,14 +162,19 @@
                 while($row = $result->fetch_assoc()) {
                     echo '
                         <div class="col">
-                            <div class="card h-100">
+                            <div class="card">
                                 <img src="images/placeholder.png" class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">' . $row["serviceName"] . '</h5>
                                     <div class="row justify-content-between">
-                                        <div class="col-4">
-                                            <p class="card-text">' . $row["categName"] . '<p>
-                                            <p>' . $row["serviceFee"] . '</p>
+                                        <div class="col-7">
+                                            <p class="card-fee">' . $row["serviceFee"] . ' <p>
+                                            <p class="card-sub"> ' . $row["categName"] . ' <p> 
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button class="button" type="submit">
+                                                <i class="fa fa-calendar-check-o fa-lg" aria-hidden="true"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
