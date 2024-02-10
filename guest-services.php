@@ -118,11 +118,14 @@
                     <a class="nav-link" href="#">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Appointments</a>
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
                 </li>
             </ul>
             <span class="navbar-text">
-                Hi, Juan!
+                Login
             </span>
             </div>
         </div>
@@ -154,7 +157,7 @@
         <br> 
         <div>
             <?php
-                $sql = "SELECT tblservice.serviceName, tblcategory.categName, tblservice.serviceFee, tblservice.serviceID FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID WHERE tblservice.serviceID='5-WX02' OR tblservice.serviceID='3-FC07' OR tblservice.serviceID='3-FC08' OR tblservice.serviceID='5-WX05';";
+                $sql = "SELECT  tblservice.image, tblservice.serviceName, tblcategory.categName, tblservice.serviceFee, tblservice.serviceID FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID WHERE tblservice.serviceID='5-WX02' OR tblservice.serviceID='3-FC07' OR tblservice.serviceID='3-FC08' OR tblservice.serviceID='5-WX05';";
                 $result = $conn->query($sql);
                 if (!$result) { die("Invalid Query: " . $conn->connect_error);}
             ?> 
@@ -163,18 +166,13 @@
                     echo '
                         <div class="col">
                             <div class="card">
-                                <img src="images/placeholder.png" class="card-img-top">
+                                <img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/ class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">' . $row["serviceName"] . '</h5>
                                     <div class="row justify-content-between">
                                         <div class="col-7">
                                             <p class="card-fee">' . $row["serviceFee"] . ' <p>
                                             <p class="card-sub"> ' . $row["categName"] . ' <p> 
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="button">
-                                                <a href="patient-booking.php?=' . $row["serviceID"] . '" style="color:white;"><i class="fa fa-calendar-check-o fa-lg" aria-hidden="true"></i></a>
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +200,7 @@
             <div id="all" data-tab-content class="active">
                 <br>     
                 <?php
-                    $sql = "SELECT tblservice.serviceName, tblcategory.categName, tblservice.serviceFee, tblservice.serviceID FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID;";
+                    $sql = "SELECT tblservice.image, tblservice.serviceName, tblcategory.categName, tblservice.serviceFee FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID;";
                     $result = $conn->query($sql);
 
                 if (!$result) { die("Invalid Query: " . $conn->connect_error);}
@@ -212,18 +210,13 @@
                         echo '
                             <div class="col">
                                 <div class="card h-100">
-                                    <img src="images/placeholder.png" class="card-img-top">
+                                    <img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/ class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">' . $row["serviceName"] . '</h5>
                                         <div class="row justify-content-between">
                                             <div class="col-4">
                                                 <p class="card-text">' . $row["categName"] . '<p>
                                                 <p>' . $row["serviceFee"] . '</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <button class="button">
-                                                    <a href="patient-booking.php?=' . $row["serviceID"] . '" style="color:white;"><i class="fa fa-calendar-check-o fa-lg" aria-hidden="true"></i></a>
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -235,7 +228,7 @@
             <div id="laser" data-tab-content>
                 <br>     
                 <?php
-                    $sql = "SELECT tblservice.serviceName, tblcategory.categName, tblservice.serviceFee, tblservice.serviceID FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID WHERE tblservice.categID=1;";
+                    $sql = "SELECT tblservice.image, tblservice.serviceName, tblcategory.categName, tblservice.serviceFee FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID WHERE tblservice.categID=1;";
                     $result = $conn->query($sql);
 
                 if (!$result) { die("Invalid Query: " . $conn->connect_error);}
@@ -245,19 +238,14 @@
                         echo '
                             <div class="col">
                                 <div class="card h-100">
-                                    <img src="images/placeholder.png" class="card-img-top">
+                                    <img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/ class="card-img-top">   
                                     <div class="card-body">
                                         <h5 class="card-title">' . $row["serviceName"] . '</h5>
                                         <div class="row justify-content-between">
                                             <div class="col-4">
                                                 <p class="card-text">' . $row["categName"] . '<p>
                                                 <p>' . $row["serviceFee"] . '</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <button class="button">
-                                                    <a href="patient-booking.php?=' . $row["serviceID"] . '" style="color:white;"><i class="fa fa-calendar-check-o fa-lg" aria-hidden="true"></i></a>
-                                                </button>
-                                            </div>
+                                            </div>                    
                                         </div>
                                     </div>
                                 </div>
@@ -268,7 +256,7 @@
             <div id="hair" data-tab-content>
                 <br>     
                 <?php
-                    $sql = "SELECT tblservice.serviceName, tblcategory.categName, tblservice.serviceFee, tblservice.serviceID FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID WHERE tblservice.categID=2;";
+                    $sql = "SELECT tblservice.image, tblservice.serviceName, tblcategory.categName, tblservice.serviceFee FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID WHERE tblservice.categID=2;";
                     $result = $conn->query($sql);
 
                 if (!$result) { die("Invalid Query: " . $conn->connect_error);}
@@ -278,19 +266,14 @@
                         echo '
                             <div class="col">
                                 <div class="card h-100">
-                                    <img src="images/placeholder.png" class="card-img-top">
+                                    <img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/ class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">' . $row["serviceName"] . '</h5>
                                         <div class="row justify-content-between">
                                             <div class="col-4">
                                                 <p class="card-text">' . $row["categName"] . '<p>
                                                 <p>' . $row["serviceFee"] . '</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <button class="button">
-                                                    <a href="patient-booking.php?=' . $row["serviceID"] . '" style="color:white;"><i class="fa fa-calendar-check-o fa-lg" aria-hidden="true"></i></a>
-                                                </button>
-                                            </div>
+                                            </div>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -301,7 +284,7 @@
             <div id="facial" data-tab-content>
                 <br>     
                 <?php
-                    $sql = "SELECT tblservice.serviceName, tblcategory.categName, tblservice.serviceFee, tblservice.serviceID FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID WHERE tblservice.categID=3;";
+                    $sql = "SELECT tblservice.image, tblservice.serviceName, tblcategory.categName, tblservice.serviceFee FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID WHERE tblservice.categID=3;";
                     $result = $conn->query($sql);
 
                 if (!$result) { die("Invalid Query: " . $conn->connect_error);}
@@ -311,19 +294,14 @@
                         echo '
                             <div class="col">
                                 <div class="card h-100">
-                                    <img src="images/placeholder.png" class="card-img-top">
+                                    <img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/ class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">' . $row["serviceName"] . '</h5>
                                         <div class="row justify-content-between">
                                             <div class="col-4">
                                                 <p class="card-text">' . $row["categName"] . '<p>
                                                 <p>' . $row["serviceFee"] . '</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <button class="button">
-                                                    <a href="patient-booking.php?=' . $row["serviceID"] . '" style="color:white;"><i class="fa fa-calendar-check-o fa-lg" aria-hidden="true"></i></a>
-                                                </button>
-                                            </div>
+                                            </div>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -334,7 +312,7 @@
             <div id="body" data-tab-content>
                 <br>     
                 <?php
-                    $sql = "SELECT tblservice.serviceName, tblcategory.categName, tblservice.serviceFee, tblservice.serviceID FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID WHERE tblservice.categID=4;";
+                    $sql = "SELECT tblservice.image, tblservice.serviceName, tblcategory.categName, tblservice.serviceFee FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID WHERE tblservice.categID=4;";
                     $result = $conn->query($sql);
 
                 if (!$result) { die("Invalid Query: " . $conn->connect_error);}
@@ -344,19 +322,14 @@
                         echo '
                             <div class="col">
                                 <div class="card h-100">
-                                    <img src="images/placeholder.png" class="card-img-top">
+                                    <img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/ class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">' . $row["serviceName"] . '</h5>
                                         <div class="row justify-content-between">
                                             <div class="col-4">
                                                 <p class="card-text">' . $row["categName"] . '<p>
                                                 <p>' . $row["serviceFee"] . '</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <button class="button">
-                                                    <a href="patient-booking.php?=' . $row["serviceID"] . '" style="color:white;"><i class="fa fa-calendar-check-o fa-lg" aria-hidden="true"></i></a>
-                                                </button>
-                                            </div>
+                                            </div>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -367,7 +340,7 @@
             <div id="wax" data-tab-content>
                 <br>     
                 <?php
-                    $sql = "SELECT tblservice.serviceName, tblcategory.categName, tblservice.serviceFee, tblservice.serviceID FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID WHERE tblservice.categID=5;";
+                    $sql = "SELECT tblservice.image, tblservice.serviceName, tblcategory.categName, tblservice.serviceFee FROM tblservice INNER JOIN tblcategory ON tblservice.categID=tblcategory.categID WHERE tblservice.categID=5;";
                     $result = $conn->query($sql);
 
                 if (!$result) { die("Invalid Query: " . $conn->connect_error);}
@@ -377,19 +350,14 @@
                         echo '
                             <div class="col">
                                 <div class="card h-100">
-                                    <img src="images/placeholder.png" class="card-img-top">
+                                    <img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/ class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">' . $row["serviceName"] . '</h5>
                                         <div class="row justify-content-between">
                                             <div class="col-4">
                                                 <p class="card-text">' . $row["categName"] . '<p>
                                                 <p>' . $row["serviceFee"] . '</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <button class="button">
-                                                    <a href="patient-booking.php?=' . $row["serviceID"] . '" style="color:white;"><i class="fa fa-calendar-check-o fa-lg" aria-hidden="true"></i></a>
-                                                </button>
-                                            </div>
+                                            </div>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -403,31 +371,7 @@
     <br><br><br>
 
     <!-- FOOTER -->
-    <!-- <div class="footer-container">
-        <div class="bg" style="background: url('bg.png') center/cover no-repeat;">
-            <div class="Tagline">
-            <h2>Trust only the experts, Trust DERMA 101</h2>
-            </div>
-            <div class="contact-info">
-            <p>MONDAY to SUNDAY 10am - 8pm</p>
-            <p>US AT 2nd Floor (Unit 201-203) 1 CIRQ Building, Sen. Lorenzo Sumulong Avenue, Brgy. San Roque, Antipolo City</p>
-            <p>(In front of Unciano Hospital, Above Converge and Beside McDonalds)</p>
-            </div>
-
-            Icons with links
-            <div class="social-icons">
-            <a href="https://www.facebook.com/Derma101" target="_blank">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <a href="mailto:derma101ph@yahoo.com" target="_blank">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="http://www.derma101ph.com/" target="_blank">
-                <i class="fas fa-globe"></i>
-            </a>
-        </div> -->
-    </div>
-
+    
     <script>
         const tabs = document.querySelectorAll('[data-tab-target]')
         const tabContents = document.querySelectorAll('[data-tab-content]')
@@ -443,10 +387,6 @@
                 target.classList.add('active')
             })
         })
-        function redirectAppt(ID) {
-            var str = "patient-booking.php?serviceID=" + console.log(ID);
-            window.location.href = str;
-        }
     </script>
 </body>
 </html>
