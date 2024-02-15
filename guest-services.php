@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- GOOGLE FONTS -->
     <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <!-- STYLESHEET -->
     <style>
         .carousel-caption{
@@ -69,12 +70,6 @@
             margin-left: 20px;
             margin-right: 20px;
         }
-        .footer-container {
-            background: url('bg.png') center/cover no-repeat;
-            padding: 20px;
-            color: black;
-            text-align: center;
-        }
         .button {
             border-radius: 30px;
             padding: 10px;
@@ -98,6 +93,19 @@
             font-size: 16px;
             color: rgb(0, 0, 0, 0.6);
         }
+        .footer {
+            background-color: #f4f5f6;
+            font-family: DM Sans;
+        }
+        .footer-title {
+            font-family: Poppins;
+            font-weight: bold;
+            color: #BE9355;
+        }
+        .icons {
+            float: right;
+        }
+
     </style>
     <title>Derma 101</title>
 </head>
@@ -112,22 +120,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" aria-current="page" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link active" href="guest-services.php">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
+                    <a class="nav-link" href="guest-aboutus.php">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link smooth-scroll" href="#contact">Contact</a>
                 </li>
             </ul>
             <span class="navbar-text">
-                Login
+                <a href="login.php">Login</a>
             </span>
-            </div>
         </div>
     </nav>
 
@@ -371,7 +378,32 @@
     <br><br><br>
 
     <!-- FOOTER -->
-    
+    <footer>
+        <div id="contact" class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-8">
+                        <br> <br> 
+                        <p class="footer-title">Contact Us</p>
+                        <p class="footer-address">2/F 1 Cirq Building, Sen. Lorenzo Sumulong Avenue, Brgy. San Roque, Antipolo, Philippines</p>
+                        <br><br>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <p>
+                            <div class="icons">
+                                <br><br>
+                                <a href="https://www.facebook.com/Derma101" style="color: #BE9355;"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                <a href="derma101ph@yahoo.com" style="color: #BE9355;"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                <a href="derma101ph.com" style="color: #BE9355;"><i class="fa fa-link fa-lg" aria-hidden="true"></i></a>                  
+                            </div>
+                        </p> <br><br><br>
+                        <p class="footer-copyright" style="text-align: right; color: #C0C0C0;">Copyright © 2024. All rights reserved.</p>
+                    </div>
+                </div>           
+            </div>     
+        </div>           
+    </footer>
+   
     <script>
         const tabs = document.querySelectorAll('[data-tab-target]')
         const tabContents = document.querySelectorAll('[data-tab-content]')
