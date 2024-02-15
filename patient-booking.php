@@ -7,6 +7,27 @@
     $row = $result->fetch_assoc();
     $svcName = $row['serviceName'];
     $ctgName = $row['categName'];
+
+    if(isset($_POST['submit'])){
+        $svcName=$_POST['svcName'];
+        $date=$_POST['date'];
+        $fullName=$_POST['fullName'];
+        $email=$_POST['email'];
+        $note=$_POST['note'];
+
+        $sql="INSERT INTO tblsched (serviceName, fullName, email, apptDate, patientNote) VALUES ('$svcName','$fullName', '$email', '$date', '$note')";
+        $result = $conn->query($sql);
+        
+        if($result){ 
+            header('location:patient-appt.php'); 
+            exit;
+        } 
+        else { 
+            die("Invalid Query: " . $conn->error); 
+        }
+        
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -162,13 +183,13 @@
             <li>
                 <div class="row align-items-start">
                     <div class="col">
-                        <input class="form-control" type="text" value="<?php echo $ctgName ?>" aria-label="Disabled input example" style="font-family: DM Sans; font-size: 16px;" disabled readonly>
+                        <input class="form-control" type="text" value="<?php echo $ctgName ?>" aria-label="Disabled input example" style="font-family: DM Sans; font-size: 16px;" disabled readonly name="ctgName">
                     </div>
                     <div class="col">
-                        <input class="form-control" type="text" value="<?php echo $svcName ?>" aria-label="Disabled input example" style="font-family: DM Sans; font-size: 16px;" disabled readonly>
+                        <input class="form-control" type="text" value="<?php echo $svcName ?>" aria-label="Disabled input example" style="font-family: DM Sans; font-size: 16px;" disabled readonly name="svcName"> 
                     </div>
                     <div class="col">
-                        <input type="date" id="txtDate" min="<?php echo date("Y-m-d"); ?>"> </li>
+                        <input type="date" id="txtDate" min="<?php echo date("Y-m-d"); ?>" name="date"> </li>
                     </div>
                 </div>
             </li>
@@ -180,14 +201,13 @@
                                 <li>
                                     <div class="row align-items-start">
                                         <div class="col">
-                                            <select class="form-select" placeholder="First name" style="font-family: DM Sans; font-size: 16px; width: 365px;" aria-label="Default select example">
-                                                <option selected>First Name</option>
-                                            </select>
+                                            <label for="exampleFormControlInput1" class="form-label">Full Name</label>
+                                            <input type="email" class="form-control" placeholder="Full Name" style="font-family: DM Sans; font-size: 16px; width: 365px;" name="fullName">
                                         </div>
+                        
                                         <div class="col">
-                                            <select class="form-select" placeholder="First name" style="font-family: DM Sans; font-size: 16px; width: 365px; margin-left: -45px;" aria-label="Default select example">
-                                                <option selected>First Name</option>
-                                            </select>
+                                            <label for="exampleFormControlInput1" class="form-label" style="margin-left: -45px;">Email address</label>
+                                            <input type="email" class="form-control" placeholder="name@example.com" style="font-family: DM Sans; font-size: 16px; width: 365px; margin-left: -45px;" id="date">
                                         </div>
                                     </div>
                                 </li>
@@ -195,11 +215,11 @@
                                     <br>
                                     <h4 style="font-family: DM Sans; font-weight:bold;">Additional Note</h4>
                                     <div class="form-floating" style="width: 730px;">
-                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                                        <label for="floatingTextarea2" style="font-weight: lighter; font-family: DM Sans">Please indicate any special instructions such as allergies, pregnancy, and the like.</label>
+                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="note"></textarea>
+                                        <label for="floatingTextarea2" style="font-weight: lighter; font-family: DM Sans; color:#D3D3D3;">Please indicate any special instructions such as allergies, pregnancy, and the like.</label>
                                     </div>
                                     <br>
-                                    <button type="button" class="btn btn-warning" style="font-family: DM Sans;">Submit</button>
+                                    <button type="submit" class="btn btn-warning" style="font-family: DM Sans;">Submit</button>
                                     <br><br>
                                 </li>
                             </ul>                                               

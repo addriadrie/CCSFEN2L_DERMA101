@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2024 at 04:52 PM
+-- Generation Time: Feb 15, 2024 at 08:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,7 +32,7 @@ CREATE TABLE `tblappt` (
   `patientID` int(11) NOT NULL,
   `serviceID` varchar(11) NOT NULL,
   `apptDate` date NOT NULL,
-  `apptTime` time NOT NULL,
+  `patientNote` text NOT NULL,
   `statusID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -69,6 +69,21 @@ CREATE TABLE `tblproduct` (
   `productName` varchar(255) NOT NULL,
   `productQty` int(11) NOT NULL,
   `productPrice` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblsched`
+--
+
+CREATE TABLE `tblsched` (
+  `apptID` int(11) NOT NULL,
+  `serviceName` varchar(255) NOT NULL,
+  `fullName` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `userNote` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -263,6 +278,12 @@ ALTER TABLE `tblproduct`
   ADD PRIMARY KEY (`productID`);
 
 --
+-- Indexes for table `tblsched`
+--
+ALTER TABLE `tblsched`
+  ADD KEY `FK_schedApptID` (`apptID`);
+
+--
 -- Indexes for table `tblservice`
 --
 ALTER TABLE `tblservice`
@@ -321,6 +342,14 @@ ALTER TABLE `tblverify`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `tblsched`
+--
+ALTER TABLE `tblsched`
+  ADD CONSTRAINT `FK_schedApptID` FOREIGN KEY (`apptID`) REFERENCES `tblappt` (`apptID`),
+  ADD CONSTRAINT `FK_schedSvcID` FOREIGN KEY (`serviceName`) REFERENCES `tblservice` (`serviceID`),
+  ADD CONSTRAINT `tblsched_ibfk_1` FOREIGN KEY (`apptID`) REFERENCES `tblappt` (`apptID`);
 
 --
 -- Constraints for table `tblsignup`
