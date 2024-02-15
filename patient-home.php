@@ -74,12 +74,6 @@
             margin-left: 20px;
             margin-right: 20px;
         }
-        .footer-container {
-            background: url('bg.png') center/cover no-repeat;
-            padding: 20px;
-            color: black;
-            text-align: center;
-        }
         .button {
             border-radius: 30px;
             padding: 10px;
