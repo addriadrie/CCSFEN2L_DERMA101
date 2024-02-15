@@ -14,6 +14,10 @@
     <!-- GOOGLE FONTS -->
     <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <!-- DROPDOWN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <!-- STYLESHEET -->
     <style>
         .carousel-caption{
@@ -23,8 +27,8 @@
             font-size: 55px;
             line-height: normal;
             text-align: left;
-            margin-left: 700px;
-            margin-bottom: 200px;
+            margin-left: 600px;
+            margin-bottom: 150px;
             text-shadow: 4px 5px 4px rgb(0, 0, 0, 0.25);
         }
         .nav-item{
@@ -107,9 +111,18 @@
             font-family: Poppins;
             font-weight: bold;
             color: #BE9355;
+            font-size: 20px;
         }
         .icons {
             float: right;
+        }
+        .dropdown-menu {
+            font-family: DM Sans;
+            font-size: 16px;
+        }
+        .reco {
+            font-family: DM Sans;
+            font-weight: bold;
         }
     </style>
     <title>Derma 101</title>
@@ -118,6 +131,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
+
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="#">
@@ -137,9 +151,16 @@
                     <a class="nav-link smooth-scroll" href="#contact">Contact</a>
                 </li>
             </ul>
-            <span class="navbar-text">
-                <a href="login.php"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Login</a>
-            </span>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item disabled" aria-disabled="true"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Edit Profile</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="index.php"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;Logout</a></li>
+                    </ul>
+                </li>
+            </ul> 
         </div>
     </nav>
 
@@ -165,7 +186,7 @@
 
     <!-- RECOMMENDED -->       
     <div class="container">
-        <h2>Recommended</h2>
+        <h2 class="reco">Recommended</h2>
         <br> 
         <div>
             <?php
@@ -180,7 +201,7 @@
                             <div class="card">
                                 <img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/ class="card-img-top">
                                 <div class="card-body">
-                                    <h5 class="card-title">' . $row["serviceName"] . '</h5>
+                                    <h5 class="card-title">&nbsp' . $row["serviceName"] . '</h5>
                                     <div class="row justify-content-between">
                                         <div class="col-7">
                                             <p class="card-fee">' . $row["serviceFee"] . ' <p>
@@ -225,25 +246,25 @@
                 <div class="row row-cols-1 row-cols-md-4 g-4"> <?php
                     while($row = $result->fetch_assoc()) {
                         echo '
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/ class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title">' . $row["serviceName"] . '</h5>
-                                        <div class="row justify-content-between">
-                                            <div class="col-4">
-                                                <p class="card-text">' . $row["categName"] . '<p>
-                                                <p>' . $row["serviceFee"] . '</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <button class="button">
-                                                    <a href="patient-booking.php?=' . $row["serviceID"] . '" style="color:white;"><i class="fa fa-calendar-check-o fa-lg" aria-hidden="true"></i></a>
-                                                </button>
-                                            </div>
+                        <div class="col">
+                            <div class="card">
+                                <img src="data:image/jpeg;base64,'.base64_encode($row['image']).'"/ class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">&nbsp' . $row["serviceName"] . '</h5>
+                                    <div class="row justify-content-between">
+                                        <div class="col-7">
+                                            <p class="card-fee">' . $row["serviceFee"] . ' <p>
+                                            <p class="card-sub"> ' . $row["categName"] . ' <p> 
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button class="button">                        
+                                                <a href="patient-booking.php?serviceID=' . $row["serviceID"] . '" style="color:white;"><i class="fa fa-calendar-check-o fa-lg" aria-hidden="true"></i></a>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>
+                        </div>';
                     } ?>
                 </div>
             </div> <!-- end of all services -->
@@ -426,18 +447,18 @@
                     <div class="col-12 col-sm-6 col-md-8">
                         <br> <br> 
                         <p class="footer-title">Contact Us</p>
-                        <p class="footer-address">2/F 1 Cirq Building, Sen. Lorenzo Sumulong Avenue, Brgy. San Roque, Antipolo, Philippines</p>
+                        <p class="footer-address" style="font-size: 18px;">2/F 1 Cirq Building, Sen. Lorenzo Sumulong Avenue, Brgy. San Roque, Antipolo, Philippines</p>
                         <br><br>
                     </div>
                     <div class="col-6 col-md-4">
                         <p>
                             <div class="icons">
                                 <br><br>
-                                <a href="https://www.facebook.com/Derma101" style="color: #BE9355;"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                                <a href="derma101ph@yahoo.com" style="color: #BE9355;"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                                <a href="derma101ph.com" style="color: #BE9355;"><i class="fa fa-link fa-lg" aria-hidden="true"></i></a>                  
+                                <a href="https://www.facebook.com/Derma101" style="color: #BE9355;"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                <a href="derma101ph@yahoo.com" style="color: #BE9355;"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                <a href="derma101ph.com" style="color: #BE9355;"><i class="fa fa-link fa-2x" aria-hidden="true"></i></a>                  
                             </div>
-                        </p> <br><br><br>
+                        </p> <br><br><br><br>
                         <p class="footer-copyright" style="text-align: right; color: #C0C0C0;">Copyright © 2024. All rights reserved.</p>
                     </div>
                 </div>           

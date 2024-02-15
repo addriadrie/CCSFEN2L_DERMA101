@@ -101,6 +101,7 @@
             font-family: Poppins;
             font-weight: bold;
             color: #BE9355;
+            font-size: 20px;
         }
         .icons {
             float: right;
@@ -132,8 +133,8 @@
                     <a class="nav-link smooth-scroll" href="#contact">Contact</a>
                 </li>
             </ul>
-            <span class="navbar-text">
-                <a href="login.php">Login</a>
+            <span class="nav-item">
+                <a href="login.php" style="color: #BE9355; text-decoration: none;"><i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Login</a>
             </span>
         </div>
     </nav>
@@ -385,18 +386,18 @@
                     <div class="col-12 col-sm-6 col-md-8">
                         <br> <br> 
                         <p class="footer-title">Contact Us</p>
-                        <p class="footer-address">2/F 1 Cirq Building, Sen. Lorenzo Sumulong Avenue, Brgy. San Roque, Antipolo, Philippines</p>
+                        <p class="footer-address" style="font-size: 18px;">2/F 1 Cirq Building, Sen. Lorenzo Sumulong Avenue, Brgy. San Roque, Antipolo, Philippines</p>
                         <br><br>
                     </div>
                     <div class="col-6 col-md-4">
                         <p>
                             <div class="icons">
                                 <br><br>
-                                <a href="https://www.facebook.com/Derma101" style="color: #BE9355;"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                                <a href="derma101ph@yahoo.com" style="color: #BE9355;"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                                <a href="derma101ph.com" style="color: #BE9355;"><i class="fa fa-link fa-lg" aria-hidden="true"></i></a>                  
+                                <a href="https://www.facebook.com/Derma101" style="color: #BE9355;"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                <a href="derma101ph@yahoo.com" style="color: #BE9355;"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                <a href="derma101ph.com" style="color: #BE9355;"><i class="fa fa-link fa-2x" aria-hidden="true"></i></a>                  
                             </div>
-                        </p> <br><br><br>
+                        </p> <br><br><br><br>
                         <p class="footer-copyright" style="text-align: right; color: #C0C0C0;">Copyright © 2024. All rights reserved.</p>
                     </div>
                 </div>           
