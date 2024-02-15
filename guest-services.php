@@ -127,7 +127,7 @@
                     <a class="nav-link active" href="guest-services.php">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="guest-aboutus.php">About Us</a>
+                    <a class="nav-link" href="guest-about-us.php">About Us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link smooth-scroll" href="#contact">Contact</a>
